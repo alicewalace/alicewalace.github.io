@@ -1,40 +1,255 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Alice's Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alice Wallace | Home Page</title>
     <style>
-        /* This is where the magic happens! Customize your colors below */
+        /* Color Palette & Font Setup */
+        :root {
+            --bg-color: #8da4b4; /* Deep sky blue */
+            --border-color: #f7f1d5; /* Pale yellow/beige */
+            --box-border-color: #0d0d0d; /* Black/very dark grey */
+            --accent-box-border: #745437; /* Brown */
+            --main-font: 'Arial', sans-serif;
+            --list-font: 'Arial', sans-serif; /* Simpler font for lists */
+        }
+
+        /* Basic Layout & Background */
         body {
-            background-color: #C79C93; /* Changes the background color */
-            color: #611F14;            /* Changes the text color */
-            font-family: 'Courier New', Courier, monospace; /* Changes the font */
-            padding: 40px;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0; /* Page background, just to make the main block pop */
+            font-family: var(--main-font);
+        }
+
+        /* Main Container for Your Entire Layout */
+        .main-container {
+            width: 1000px;
+            height: 1000px; /* Force it to be square like the drawing */
+            background-color: var(--bg-color);
+            border: 6px solid var(--border-color); /* The inner pale border */
+            outline: 6px solid #4a5a67; /* The outer darker border to look like the sketch */
+            box-sizing: border-box;
+            position: relative;
+            padding: 2rem; /* Add some padding to everything inside */
+        }
+
+        /* Title Box: "A L I C E W A L A C E" */
+        .title-box {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            right: 2rem;
+            height: 80px; /* Reduced height as per suggestion */
+            border: 2px solid var(--box-border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
 
-        h1 {
-            color: #611F14;            /* Custom color for your name (Hot Pink!) */
+        .title-text {
+            color: #d1d9e2; /* Light grey text */
             font-size: 3rem;
-            border-bottom: 3px dashed #ffb6c1; /* Fun decorative dashed line */
-            padding-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5rem; /* Wide letter spacing to match the drawing */
         }
 
-        .box {
-            background-color: white;
-            border: 2px solid #ff69b4;
-            border-radius: 15px;      /* Rounds the corners */
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 5px 5px 0px #ffb6c1; /* Fun retro shadow effect */
+        /* Intro Text Box: "Hi so it's me :)" */
+        .intro-box {
+            position: absolute;
+            top: calc(2rem + 80px + 1rem); /* Directly below title box */
+            left: 2rem;
+            right: 2rem;
+            height: 120px; /* Reduced height as per suggestion */
+            border: 2px solid var(--box-border-color);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center; /* Centered text */
         }
+
+        .intro-text-1 {
+            color: #d1d9e2; /* Light grey text */
+            font-size: 1.5rem;
+            font-style: italic; /* Italic text */
+            margin: 0;
+        }
+
+        .intro-text-2 {
+            color: white; /* White text for second part */
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0 0 0;
+        }
+
+        /* Group for the Columns to make layout easy */
+        .columns-container {
+            position: absolute;
+            top: calc(2rem + 80px + 120px + 3rem); /* Position below intro box */
+            left: 2rem;
+            right: 2rem;
+            height: 550px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns of equal width */
+            gap: 2rem;
+        }
+
+        /* General Styling for Columns */
+        .column {
+            border: 2px solid var(--box-border-color);
+            height: 100%;
+            padding: 1rem;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.1); /* Slight white tint to boxes */
+        }
+
+        /* Column 1: "Interests and Hobbies" */
+        .hobbies-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .hobby-item {
+            color: #d1d9e2; /* Light grey text for items */
+            font-size: 1.8rem;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+        }
+
+        .hobby-item span {
+            margin-right: 0.5rem;
+            color: white; /* Make the numbers white */
+        }
+
+        /* Column 2: "Math Olympiad and Making Stars!!" */
+        .math-stars-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            text-align: center; /* Center everything in this column */
+        }
+
+        .category-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .math-stars-column .hobby-item {
+            font-size: 1.5rem;
+            justify-content: center;
+        }
+
+        /* Column 3: The Big Accent Box */
+        .accent-column {
+            border: 2px solid var(--accent-box-border); /* Distinct brown border */
+            background-color: transparent; /* Empty as per original design */
+        }
+
+        /* Text Block: The Regression Quote */
+        .regression-box {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 250px;
+            height: 100px;
+            border: 2px solid var(--box-border-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .regression-text {
+            color: white; /* White text */
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: lowercase; /* Force lowercase to match sketch */
+        }
+
+        /* Accent Boxes Group for easier positioning */
+        .accents-container {
+            position: absolute;
+            bottom: calc(2rem + 100px + 1rem); /* Above the regression box */
+            left: 2rem;
+            right: calc(2rem + 250px + 2rem); /* Keep right side clear for regression box */
+            height: 80px;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Adjust ratios as needed */
+            gap: 1rem;
+        }
+
+        /* Accent Box 1: A wide box */
+        .accent-box-1 {
+            border: 2px solid var(--box-border-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Accent Box 2: An empty accent box next to the Quote */
+        .accent-box-2 {
+            position: absolute;
+            bottom: 2rem;
+            right: calc(2rem + 250px + 1rem); /* Just to the left of the regression box */
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--box-border-color);
+        }
+
     </style>
 </head>
 <body>
 
-    <h1>alicewalace ✨</h1>
-    
-    <div class="box">
-        <p>I like cats. 🐾</p>
+    <div class="main-container">
+
+        <div class="title-box">
+            <h1 class="title-text">A L I C E W A L A C E</h1>
+        </div>
+
+        <div class="intro-box">
+            <p class="intro-text-1">Hi so it's me :)</p>
+            <p class="intro-text-2">And this is just a fun side project I wanted to do cuz I was bored. Anyways here are my interests and hobbies.</p>
+        </div>
+
+        <div class="columns-container">
+
+            <div class="column hobbies-column">
+                <div class="hobby-item"><span>1.</span>Math</div>
+                <div class="hobby-item"><span>2.</span>Reading</div>
+                <div class="hobby-item"><span>3.</span>Writing</div>
+                <div class="hobby-item"><span>4.</span>Drawing</div>
+                <div class="hobby-item"><span>5.</span>Making stars!!</div>
+            </div>
+
+            <div class="column math-stars-column">
+                <div class="category-title">Math Olympiad</div>
+                <div class="category-title">Making Stars!!</div>
+                </div>
+
+            <div class="column accent-column"></div>
+        </div>
+
+        <div class="regression-box">
+            <p class="regression-text">"tell me you fool if i continue to regress will i ever get to meet you again"</p>
+        </div>
+
+        <div class="accents-container">
+            <div class="accent-box-1"></div>
+            </div>
+
+        <div class="accent-box-2"></div>
+
     </div>
 
 </body>
